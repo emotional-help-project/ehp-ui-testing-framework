@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class SignUpPage extends BasePage {
+
     @FindBy(xpath = "//input[@formcontrolname='firstName']")
     WebElement firstNameField;
     @FindBy(xpath = "//input[@formcontrolname='lastName']")

@@ -1,6 +1,6 @@
 Feature: SignUp feature for Emotional Help Project
 
-  Background: User is on the HomePage
+  Background: Open SignUp Page
     Given User is on the HomePage
     And Clicks on the SignUp button
 
@@ -11,7 +11,6 @@ Feature: SignUp feature for Emotional Help Project
       | email     | test%d@test.test |
       | password  | testtest       |
       | age       | 33             |
-
     And Selects a gender
     When User click the SignUp button
     Then User is redirected to the LoginPage

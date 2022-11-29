@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.Optional;
 
 public class DriverManager {
+
     private static final ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
 
     private DriverManager() {

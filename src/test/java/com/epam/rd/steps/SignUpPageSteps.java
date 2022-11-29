@@ -10,10 +10,11 @@ import java.util.Map;
 import java.util.Random;
 
 public class SignUpPageSteps {
+
     private final SignUpPage signUpPage = new SignUpPage();
 
     @Given("User enters valid data")
-    public void userEntersValidData(DataTable dataTable) {
+    public void enterValidData(DataTable dataTable) {
         Map<String, String> data = dataTable.asMap();
         signUpPage.enterFirstName(data.get("firstName"))
                 .enterLastName(data.get("lastName"))

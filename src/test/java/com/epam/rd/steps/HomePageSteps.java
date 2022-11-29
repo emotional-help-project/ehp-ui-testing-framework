@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 
 public class HomePageSteps {
+
     private final HomePage homePage = new HomePage();
 
     @Given("User is on the HomePage")
