@@ -25,6 +25,7 @@ Feature: SignUp feature for Emotional Help Project
       | email     | test%d@test.test |
       | password  | test1@Ttest      |
       | age       | 33               |
+    And Selects a gender
     Then An error message "* First name length must be equil 2-20 characters" is displayed beneath first name field
 
   Scenario: SignUp with invalid first name (too long)
@@ -34,6 +35,7 @@ Feature: SignUp feature for Emotional Help Project
       | email     | test%d@test.test                        |
       | password  | test1@Ttest                             |
       | age       | 33                                      |
+    And Selects a gender
     Then An error message "* First name length must be equil 2-20 characters" is displayed beneath first name field
 
   Scenario: SignUp with invalid last name (too short)
@@ -43,6 +45,7 @@ Feature: SignUp feature for Emotional Help Project
       | email     | test%d@test.test |
       | password  | test1@Ttest      |
       | age       | 33               |
+    And Selects a gender
     Then An error message "* Last name length must be equil 2-20 characters" is displayed beneath last name field
 
   Scenario: SignUp with invalid last name (too long)
@@ -52,6 +55,7 @@ Feature: SignUp feature for Emotional Help Project
       | email     | test%d@test.test                        |
       | password  | test1@Ttest                             |
       | age       | 33                                      |
+    And Selects a gender
     Then An error message "* Last name length must be equil 2-20 characters" is displayed beneath last name field
 
   Scenario: SignUp with invalid email
@@ -61,6 +65,16 @@ Feature: SignUp feature for Emotional Help Project
       | email     | aaa@aaa                                 |
       | password  | test1@Ttest                             |
       | age       | 33                                      |
+    And Selects a gender
     Then An error message "* Email address must be valid" beneath email field
 
-#  Scenario: SignUp with an already used email
+  Scenario: SignUp with an already used email
+    Given Entered email has an account linked to it
+      | firstName | test           |
+      | lastName  | test           |
+      | email     | test@test.test |
+      | password  | test1@Ttest    |
+      | age       | 33             |
+    And Selects a gender
+    When User click the SignUp button
+    Then An error label is displayed with message "The user with email test@test.test already exists. Please check credentials."

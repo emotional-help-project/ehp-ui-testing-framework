@@ -26,6 +26,8 @@ public class SignUpPage extends BasePage {
     List<WebElement> genderRadioButtons;
     @FindBy(xpath = "//p[@class='success__message'])")
     WebElement signUpConfirmationLabel;
+    @FindBy(xpath = "//p[@class='error__message'])")
+    WebElement emailErrorLabel;
     @FindBy(xpath = "//small[contains(text(), 'First')]")
     WebElement firstNameErrorMessage;
     @FindBy(xpath = "//small[contains(text(), 'Last')]")
@@ -91,5 +93,9 @@ public class SignUpPage extends BasePage {
 
     public String getEmailErrorMessage() {
         return emailErrorMessage.getText();
+    }
+
+    public String getUsedEmailErrorMessage() {
+        return emailErrorLabel.getText();
     }
 }

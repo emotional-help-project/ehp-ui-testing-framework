@@ -95,4 +95,14 @@ public class SignUpPageSteps {
     public void getEmailErrorMessage(String expectedEmailErrorMessage) {
         Assert.assertEquals(signUpPage.getEmailErrorMessage(), expectedEmailErrorMessage);
     }
+
+    @When("Entered email has an account linked to it")
+    public void enterAnAlreadyUsedEmail(DataTable dataTable) {
+        fillFormFromDataTable(dataTable);
+    }
+
+    @Then("An error label is displayed with message {string}")
+    public void getUsedEmailErrorMessage(String expectedEmailErrorMessage) {
+        Assert.assertEquals(signUpPage.getUsedEmailErrorMessage(), expectedEmailErrorMessage);
+    }
 }
