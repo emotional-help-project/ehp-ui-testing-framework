@@ -45,6 +45,9 @@ public class SignUpPage extends BasePage {
     @FindBy(xpath = "//small[contains(text(), 'Email')]")
     WebElement emailErrorMessage;
 
+    @FindBy(xpath = "//small[contains(text(), 'age')]")
+    WebElement ageErrorMessage;
+
     By emailErrorLabel = By.xpath("//p[@class='error__message']");
 
     By signUpConfirmationLabel = By.xpath("//p[@class='success__message']");
@@ -115,5 +118,9 @@ public class SignUpPage extends BasePage {
         return new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.presenceOfElementLocated(emailErrorLabel))
                 .getText();
+    }
+
+    public String getAgeErrorMessage() {
+        return ageErrorMessage.getText();
     }
 }

@@ -63,7 +63,7 @@ public class SignUpPageSteps {
                 , "Incorrect email error message should be displayed");
     }
 
-    @When("Entered email has an account linked to it")
+    @When("User enters an email that has an account linked to it")
     public void enterAnAlreadyUsedEmail(DataTable dataTable) {
         fillFormFromDataTable(dataTable);
     }
@@ -92,5 +92,16 @@ public class SignUpPageSteps {
                 .enterPassword(data.get("password"))
                 .confirmPassword(data.get("password"))
                 .enterAge(data.get("age"));
+    }
+
+    @Given("User enters an invalid age {string}")
+    public void enterAge(String age) {
+        signUpPage.enterAge(age);
+    }
+
+    @Then("An error message {string} is displayed beneath age field")
+    public void anErrorMessageIsDisplayedBeneathAgeField(String expectedAgeErrorMessage) {
+        Assert.assertEquals(signUpPage.getAgeErrorMessage(), expectedAgeErrorMessage
+                , "Invalid age message should be displayed");
     }
 }

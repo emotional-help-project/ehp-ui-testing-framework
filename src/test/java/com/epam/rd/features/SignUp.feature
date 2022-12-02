@@ -47,7 +47,7 @@ Feature: SignUp feature for Emotional Help Project
     Then An error message "* Email address must be valid" beneath email field
 
   Scenario: SignUp with an already used email
-    Given Entered email has an account linked to it
+    Given User enters an email that has an account linked to it
       | firstName | test           |
       | lastName  | test           |
       | email     | test@test.test |
@@ -56,3 +56,14 @@ Feature: SignUp feature for Emotional Help Project
     And Selects a gender
     When User click the SignUp button
     Then An error label is displayed with message "The user with email test@test.test already exists. Please check credentials."
+
+  Scenario Outline: SignUp with invalid age (negative/0/lest than 5/greater 150)
+    Given User enters an invalid age <age>
+    And Selects a gender
+    Then An error message "* Min age is 5 years, max - 150" is displayed beneath age field
+    Examples:
+      | age   |
+      | "-10" |
+      | "0"   |
+      | "4"   |
+      | "170" |
