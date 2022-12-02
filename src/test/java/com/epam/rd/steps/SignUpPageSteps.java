@@ -17,13 +17,7 @@ public class SignUpPageSteps {
 
     @Given("User enters valid data")
     public void enterValidData(DataTable dataTable) {
-        Map<String, String> data = dataTable.asMap();
-        signUpPage.enterFirstName(data.get("firstName"))
-                .enterLastName(data.get("lastName"))
-                .enterEmail(String.format(data.get("email"), new Random().nextInt(1000)))
-                .enterPassword(data.get("password"))
-                .confirmPassword(data.get("password"))
-                .enterAge(data.get("age"));
+        fillFormFromDataTable(dataTable);
     }
 
     @When("User click the SignUp button")
