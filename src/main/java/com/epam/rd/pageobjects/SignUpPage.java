@@ -1,8 +1,12 @@
 package com.epam.rd.pageobjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
@@ -24,16 +28,14 @@ public class SignUpPage extends BasePage {
     WebElement signUpFormButton;
     @FindBy(xpath = "//input[@name='gender']")
     List<WebElement> genderRadioButtons;
-    @FindBy(xpath = "//p[@class='success__message'])")
-    WebElement signUpConfirmationLabel;
-    @FindBy(xpath = "//p[@class='error__message'])")
-    WebElement emailErrorLabel;
     @FindBy(xpath = "//small[contains(text(), 'First')]")
     WebElement firstNameErrorMessage;
     @FindBy(xpath = "//small[contains(text(), 'Last')]")
     WebElement lastNameErrorMessage;
     @FindBy(xpath = "//small[contains(text(), 'Email')]")
     WebElement emailErrorMessage;
+    By emailErrorLabel = By.xpath("//p[@class='error__message']");
+    By signUpConfirmationLabel = By.xpath("//p[@class='success__message']");
 
     public SignUpPage enterFirstName(String firstName) {
         firstNameField.sendKeys(firstName);
@@ -80,7 +82,9 @@ public class SignUpPage extends BasePage {
     }
 
     public String getConfirmationMessage() {
-        return signUpConfirmationLabel.getText();
+        return new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.presenceOfElementLocated(signUpConfirmationLabel))
+                .getText();
     }
 
     public String getFirstNameErrorMessage() {
@@ -96,6 +100,8 @@ public class SignUpPage extends BasePage {
     }
 
     public String getUsedEmailErrorMessage() {
-        return emailErrorLabel.getText();
+        return new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.presenceOfElementLocated(emailErrorLabel))
+                .getText();
     }
 }
