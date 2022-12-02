@@ -31,45 +31,25 @@ public class SignUpPageSteps {
 
     @Then("SignUp button is disabled")
     public void isSignupButtonDisabled() {
-        Assert.assertTrue(signUpPage.isSignUpButtonDisabled(), "SignUp button is enabled.");
+        Assert.assertTrue(signUpPage.isSignUpButtonDisabled(), "SignUp button should be disabled");
     }
 
     @Then("A successful signup message is displayed")
     public void getConfirmationMessage() {
         Assert.assertTrue(signUpPage.getConfirmationMessage().contains("You register successfully")
-                , "Incorrect SignUp confirmation message");
-    }
-
-    @Given("Entered first name is too short")
-    public void enterTooShortFirstName(DataTable dataTable) {
-        fillFormFromDataTable(dataTable);
+                , "Correct SignUp confirmation message should be displayed");
     }
 
     @Then("An error message {string} is displayed beneath first name field")
     public void getFirstNameErrorMessage(String expectedFirstNameErrorMessage) {
         Assert.assertEquals(signUpPage.getFirstNameErrorMessage(), expectedFirstNameErrorMessage
-                , "Incorrect first name error message");
-    }
-
-    @Given("Entered first name is too long")
-    public void enterTooLongFirstName(DataTable dataTable) {
-        fillFormFromDataTable(dataTable);
-    }
-
-    @Given("Entered last name is too short")
-    public void enterTooShortLastName(DataTable dataTable) {
-        fillFormFromDataTable(dataTable);
+                , "Incorrect first name error message should be displayed");
     }
 
     @Then("An error message {string} is displayed beneath last name field")
     public void getLastNameErrorMessage(String expectedLastNameErrorMessage) {
         Assert.assertEquals(signUpPage.getLastNameErrorMessage(), expectedLastNameErrorMessage
-                , "Incorrect last name error message");
-    }
-
-    @Given("Entered last name is too long")
-    public void enterTooLongLastName(DataTable dataTable) {
-        fillFormFromDataTable(dataTable);
+                , "Incorrect last name error message should be displayed");
     }
 
     @When("Entered email is invalid")
@@ -80,7 +60,7 @@ public class SignUpPageSteps {
     @Then("An error message {string} beneath email field")
     public void getEmailErrorMessage(String expectedEmailErrorMessage) {
         Assert.assertEquals(signUpPage.getEmailErrorMessage(), expectedEmailErrorMessage
-                , "Incorrect email error message");
+                , "Incorrect email error message should be displayed");
     }
 
     @When("Entered email has an account linked to it")
@@ -91,7 +71,17 @@ public class SignUpPageSteps {
     @Then("An error label is displayed with message {string}")
     public void getUsedEmailErrorMessage(String expectedEmailErrorMessage) {
         Assert.assertEquals(signUpPage.getUsedEmailErrorMessage(), expectedEmailErrorMessage
-                , "Incorrect message for already used email label");
+                , "Already used email message should be displayed");
+    }
+
+    @When("User enters an invalid first name {string}")
+    public void enterFirstName(String firstName) {
+        signUpPage.enterFirstName(firstName);
+    }
+
+    @When("User enters an invalid last name {string}")
+    public void enterLastName(String lastName) {
+        signUpPage.enterLastName(lastName);
     }
 
     public void fillFormFromDataTable(DataTable dataTable) {
