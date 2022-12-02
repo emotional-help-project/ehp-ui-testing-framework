@@ -14,27 +14,39 @@ public class SignUpPage extends BasePage {
 
     @FindBy(xpath = "//input[@formcontrolname='firstName']")
     WebElement firstNameField;
+
     @FindBy(xpath = "//input[@formcontrolname='lastName']")
     WebElement lastNameField;
+
     @FindBy(xpath = "//input[@formcontrolname='email']")
     WebElement emailField;
+
     @FindBy(xpath = "//input[@formcontrolname='password']")
     WebElement passwordField;
+
     @FindBy(xpath = "//input[@formcontrolname='confirmPassword']")
     WebElement confirmPasswordField;
+
     @FindBy(xpath = "//input[@formcontrolname='age']")
     WebElement ageField;
+
     @FindBy(xpath = "//button[text()='Sign up']")
     WebElement signUpFormButton;
+
     @FindBy(xpath = "//input[@name='gender']")
     List<WebElement> genderRadioButtons;
+
     @FindBy(xpath = "//small[contains(text(), 'First')]")
     WebElement firstNameErrorMessage;
+
     @FindBy(xpath = "//small[contains(text(), 'Last')]")
     WebElement lastNameErrorMessage;
+
     @FindBy(xpath = "//small[contains(text(), 'Email')]")
     WebElement emailErrorMessage;
+
     By emailErrorLabel = By.xpath("//p[@class='error__message']");
+
     By signUpConfirmationLabel = By.xpath("//p[@class='success__message']");
 
     public SignUpPage enterFirstName(String firstName) {

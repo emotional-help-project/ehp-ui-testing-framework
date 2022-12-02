@@ -2,7 +2,6 @@ package com.epam.rd.steps;
 
 import com.epam.rd.pageobjects.SignUpPage;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,19 +24,20 @@ public class SignUpPageSteps {
         signUpPage.clickSignUpFormButton();
     }
 
-    @And("Selects a gender")
+    @When("Selects a gender")
     public void selectGender() {
         signUpPage.clickRandomGenderRadioButton();
     }
 
     @Then("SignUp button is disabled")
     public void isSignupButtonDisabled() {
-        Assert.assertTrue(signUpPage.isSignUpButtonDisabled());
+        Assert.assertTrue(signUpPage.isSignUpButtonDisabled(), "SignUp button is enabled.");
     }
 
     @Then("A successful signup message is displayed")
     public void getConfirmationMessage() {
-        Assert.assertTrue(signUpPage.getConfirmationMessage().contains("You register successfully"));
+        Assert.assertTrue(signUpPage.getConfirmationMessage().contains("You register successfully")
+                , "Incorrect SignUp confirmation message");
     }
 
     @Given("Entered first name is too short")
@@ -47,7 +47,8 @@ public class SignUpPageSteps {
 
     @Then("An error message {string} is displayed beneath first name field")
     public void getFirstNameErrorMessage(String expectedFirstNameErrorMessage) {
-        Assert.assertEquals(signUpPage.getFirstNameErrorMessage(), expectedFirstNameErrorMessage);
+        Assert.assertEquals(signUpPage.getFirstNameErrorMessage(), expectedFirstNameErrorMessage
+                , "Incorrect first name error message");
     }
 
     @Given("Entered first name is too long")
@@ -62,7 +63,8 @@ public class SignUpPageSteps {
 
     @Then("An error message {string} is displayed beneath last name field")
     public void getLastNameErrorMessage(String expectedLastNameErrorMessage) {
-        Assert.assertEquals(signUpPage.getLastNameErrorMessage(), expectedLastNameErrorMessage);
+        Assert.assertEquals(signUpPage.getLastNameErrorMessage(), expectedLastNameErrorMessage
+                , "Incorrect last name error message");
     }
 
     @Given("Entered last name is too long")
@@ -77,7 +79,8 @@ public class SignUpPageSteps {
 
     @Then("An error message {string} beneath email field")
     public void getEmailErrorMessage(String expectedEmailErrorMessage) {
-        Assert.assertEquals(signUpPage.getEmailErrorMessage(), expectedEmailErrorMessage);
+        Assert.assertEquals(signUpPage.getEmailErrorMessage(), expectedEmailErrorMessage
+                , "Incorrect email error message");
     }
 
     @When("Entered email has an account linked to it")
@@ -87,7 +90,8 @@ public class SignUpPageSteps {
 
     @Then("An error label is displayed with message {string}")
     public void getUsedEmailErrorMessage(String expectedEmailErrorMessage) {
-        Assert.assertEquals(signUpPage.getUsedEmailErrorMessage(), expectedEmailErrorMessage);
+        Assert.assertEquals(signUpPage.getUsedEmailErrorMessage(), expectedEmailErrorMessage
+                , "Incorrect message for already used email label");
     }
 
     public void fillFormFromDataTable(DataTable dataTable) {
