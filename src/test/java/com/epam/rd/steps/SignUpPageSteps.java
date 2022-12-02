@@ -70,16 +70,6 @@ public class SignUpPageSteps {
         fillFormFromDataTable(dataTable);
     }
 
-    public void fillFormFromDataTable(DataTable dataTable) {
-        Map<String, String> data = dataTable.asMap();
-        signUpPage.enterFirstName(data.get("firstName"))
-                .enterLastName(data.get("lastName"))
-                .enterEmail(String.format(data.get("email"), new Random().nextInt(1000)))
-                .enterPassword(data.get("password"))
-                .confirmPassword(data.get("password"))
-                .enterAge(data.get("age"));
-    }
-
     @When("Entered email is invalid")
     public void enterInvalidEmail(DataTable dataTable) {
         fillFormFromDataTable(dataTable);
@@ -98,5 +88,15 @@ public class SignUpPageSteps {
     @Then("An error label is displayed with message {string}")
     public void getUsedEmailErrorMessage(String expectedEmailErrorMessage) {
         Assert.assertEquals(signUpPage.getUsedEmailErrorMessage(), expectedEmailErrorMessage);
+    }
+
+    public void fillFormFromDataTable(DataTable dataTable) {
+        Map<String, String> data = dataTable.asMap();
+        signUpPage.enterFirstName(data.get("firstName"))
+                .enterLastName(data.get("lastName"))
+                .enterEmail(String.format(data.get("email"), new Random().nextInt(1000)))
+                .enterPassword(data.get("password"))
+                .confirmPassword(data.get("password"))
+                .enterAge(data.get("age"));
     }
 }
