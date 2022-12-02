@@ -16,12 +16,22 @@ public class SignUpPage extends BasePage {
     WebElement emailField;
     @FindBy(xpath = "//input[@formcontrolname='password']")
     WebElement passwordField;
+    @FindBy(xpath = "//input[@formcontrolname='confirmPassword']")
+    WebElement confirmPasswordField;
     @FindBy(xpath = "//input[@formcontrolname='age']")
     WebElement ageField;
     @FindBy(xpath = "//button[text()='Sign up']")
     WebElement signUpFormButton;
     @FindBy(xpath = "//input[@name='gender']")
     List<WebElement> genderRadioButtons;
+    @FindBy(xpath = "//p[@class='success__message'])")
+    WebElement signUpConfirmationLabel;
+    @FindBy(xpath = "//small[contains(text(), 'First')]")
+    WebElement firstNameErrorMessage;
+    @FindBy(xpath = "//small[contains(text(), 'Last')]")
+    WebElement lastNameErrorMessage;
+    @FindBy(xpath = "//small[contains(text(), 'Email')]")
+    WebElement emailErrorMessage;
 
     public SignUpPage enterFirstName(String firstName) {
         firstNameField.sendKeys(firstName);
@@ -43,6 +53,11 @@ public class SignUpPage extends BasePage {
         return this;
     }
 
+    public SignUpPage confirmPassword(String password) {
+        confirmPasswordField.sendKeys(password);
+        return this;
+    }
+
     public SignUpPage enterAge(String age) {
         ageField.sendKeys(age);
         return this;
@@ -56,5 +71,25 @@ public class SignUpPage extends BasePage {
     public SignUpPage clickRandomGenderRadioButton() {
         genderRadioButtons.get(new Random().nextInt(genderRadioButtons.size())).click();
         return this;
+    }
+
+    public boolean isSignUpButtonDisabled() {
+        return signUpFormButton.getAttribute("disabled") != null;
+    }
+
+    public String getConfirmationMessage() {
+        return signUpConfirmationLabel.getText();
+    }
+
+    public String getFirstNameErrorMessage() {
+        return firstNameErrorMessage.getText();
+    }
+
+    public String getLastNameErrorMessage() {
+        return lastNameErrorMessage.getText();
+    }
+
+    public String getEmailErrorMessage() {
+        return emailErrorMessage.getText();
     }
 }

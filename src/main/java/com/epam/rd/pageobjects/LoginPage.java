@@ -5,10 +5,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
+
     @FindBy(xpath = "//button[text()='Sign in']")
     WebElement signInButton;
 
-    public String getButtonText() {
-        return signInButton.getText();
-    }
+
+
 }
