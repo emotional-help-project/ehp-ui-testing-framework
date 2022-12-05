@@ -2,7 +2,7 @@ Feature: SignUp feature for Emotional Help Project
 
   Background: Open SignUp Page
     Given User is on the HomePage
-    And Clicks on the SignUp button
+    And Clicks on the SignUp link in the header
 
   Scenario: SignUp with valid data
     Given User enters valid data
@@ -12,7 +12,7 @@ Feature: SignUp feature for Emotional Help Project
       | password  | test1@Ttest      |
       | age       | 33               |
     And Selects a gender
-    When User click the SignUp button
+    When User click the SignUp form button
     Then A successful signup message is displayed
 
   Scenario: SignUp with empty fields
@@ -54,7 +54,7 @@ Feature: SignUp feature for Emotional Help Project
       | password  | test1@Ttest    |
       | age       | 33             |
     And Selects a gender
-    When User click the SignUp button
+    When User click the SignUp form button
     Then An error label is displayed with message "The user with email test@test.test already exists. Please check credentials."
 
   Scenario Outline: SignUp with invalid age (negative/0/lest than 5/greater 150)
@@ -67,3 +67,6 @@ Feature: SignUp feature for Emotional Help Project
       | "0"   |
       | "4"   |
       | "170" |
+
+
+#    Test for password

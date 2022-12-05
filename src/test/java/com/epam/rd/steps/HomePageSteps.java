@@ -13,7 +13,7 @@ public class HomePageSteps {
         homePage.open();
     }
 
-    @When("Clicks on the SignUp button")
+    @When("Clicks on the SignUp link in the header")
     public void clickSignUp() {
         homePage.clickSignUp();
     }

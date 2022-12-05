@@ -19,7 +19,7 @@ public class SignUpPageSteps {
         fillFormFromDataTable(dataTable);
     }
 
-    @When("User click the SignUp button")
+    @When("User click the SignUp form button")
     public void clickSignUpFormButton() {
         signUpPage.clickSignUpFormButton();
     }
