@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -36,7 +37,7 @@ public class SignUpPageSteps {
 
     @Then("A successful signup message is displayed")
     public void getConfirmationMessage() {
-        Assert.assertTrue(signUpPage.getConfirmationMessage().contains("You register successfully")
+        Assert.assertTrue(signUpPage.getConfirmationMessage().contains("You registered successfully")
                 , "Correct SignUp confirmation message should be displayed");
     }
 
@@ -100,6 +101,26 @@ public class SignUpPageSteps {
         signUpPage.enterPassword(password);
     }
 
+    @Then("The following error message is displayed")
+    public void getInvalidPasswordErrorMessage(DataTable dataTable) {
+        String expectedErrorMessage = dataTable.asList().get(0);
+        Assert.assertEquals(signUpPage.getPasswordErrorMessage(), expectedErrorMessage
+                , "Invalid password message should be displayed");
+    }
+
+    @Given("User enters different password and confirmation password")
+    public void enterDifferentPasswordAndConfirmationPassword(DataTable dataTable) {
+        List<String> passwords = dataTable.asList();
+        signUpPage.enterPassword(passwords.get(0))
+                .confirmPassword(passwords.get(1));
+    }
+
+    @Then("An error message {string} is displayed beneath confirmation password field")
+    public void getConfirmationPasswordErrorMessage(String expectedErrorMessage) {
+        Assert.assertEquals(signUpPage.getConfirmationPasswordErrorMessage(), expectedErrorMessage
+                , "Both passwords must be equal message should be displayed");
+    }
+
     public void fillFormFromDataTable(DataTable dataTable) {
         Map<String, String> data = dataTable.asMap();
         signUpPage.enterFirstName(data.get("firstName"))
@@ -108,13 +129,5 @@ public class SignUpPageSteps {
                 .enterPassword(data.get("password"))
                 .confirmPassword(data.get("password"))
                 .enterAge(data.get("age"));
-    }
-
-    @Then("The following error message is displayed")
-    public void getInvalidPasswordErrorMessage(DataTable dataTable) {
-        String expectedErrorMessage = dataTable.asList().get(0);
-        Assert.assertEquals(signUpPage.getPasswordErrorMessage(), expectedErrorMessage
-                , "Invalid password message should be displayed");
-
     }
 }

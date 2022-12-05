@@ -51,6 +51,9 @@ public class SignUpPage extends BasePage {
     @FindBy(xpath = "//small[contains(text(), 'contain')]")
     WebElement passwordErrorMessage;
 
+    @FindBy(xpath = "//small[contains(text(), 'Both')]")
+    WebElement confirmationPasswordErrorMessage;
+
     By emailErrorLabel = By.xpath("//p[@class='error__message']");
 
     By signUpConfirmationLabel = By.xpath("//p[@class='success__message']");
@@ -119,6 +122,10 @@ public class SignUpPage extends BasePage {
 
     public String getPasswordErrorMessage() {
         return passwordErrorMessage.getText();
+    }
+
+    public String getConfirmationPasswordErrorMessage() {
+        return confirmationPasswordErrorMessage.getText();
     }
 
     public String getUsedEmailErrorMessage() {
