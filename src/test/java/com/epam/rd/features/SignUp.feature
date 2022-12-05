@@ -68,5 +68,15 @@ Feature: SignUp feature for Emotional Help Project
       | "4"   |
       | "170" |
 
-
-#    Test for password
+  Scenario Outline: SignUp with invalid password (<8 characters/no uppercase letter/no lowercase letter/no digit/no special character)
+    Given User enters an invalid password <password>
+    And Selects a gender
+    Then The following error message is displayed
+      | * Password must contain at least 1 digit, 1 lowercase, 1 uppercase characters, 1 special character (! @ # &), min length - 8 |
+    Examples:
+      | password        |
+      | "secret"        |
+      | "superSecret1"  |
+      | "supersecret1!" |
+      | "SUPERSECRET1!" |
+      | "superSecret!"  |

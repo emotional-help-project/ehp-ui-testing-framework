@@ -75,13 +75,29 @@ public class SignUpPageSteps {
     }
 
     @When("User enters an invalid first name {string}")
-    public void enterFirstName(String firstName) {
+    public void enterInvalidFirstName(String firstName) {
         signUpPage.enterFirstName(firstName);
     }
 
     @When("User enters an invalid last name {string}")
-    public void enterLastName(String lastName) {
+    public void enterInvalidLastName(String lastName) {
         signUpPage.enterLastName(lastName);
+    }
+
+    @Given("User enters an invalid age {string}")
+    public void enterAge(String age) {
+        signUpPage.enterAge(age);
+    }
+
+    @Then("An error message {string} is displayed beneath age field")
+    public void anErrorMessageIsDisplayedBeneathAgeField(String expectedAgeErrorMessage) {
+        Assert.assertEquals(signUpPage.getAgeErrorMessage(), expectedAgeErrorMessage
+                , "Invalid age message should be displayed");
+    }
+
+    @Given("User enters an invalid password {string}")
+    public void enterInvalidPassword(String password) {
+        signUpPage.enterPassword(password);
     }
 
     public void fillFormFromDataTable(DataTable dataTable) {
@@ -94,14 +110,11 @@ public class SignUpPageSteps {
                 .enterAge(data.get("age"));
     }
 
-    @Given("User enters an invalid age {string}")
-    public void enterAge(String age) {
-        signUpPage.enterAge(age);
-    }
+    @Then("The following error message is displayed")
+    public void getInvalidPasswordErrorMessage(DataTable dataTable) {
+        String expectedErrorMessage = dataTable.asList().get(0);
+        Assert.assertEquals(signUpPage.getPasswordErrorMessage(), expectedErrorMessage
+                , "Invalid password message should be displayed");
 
-    @Then("An error message {string} is displayed beneath age field")
-    public void anErrorMessageIsDisplayedBeneathAgeField(String expectedAgeErrorMessage) {
-        Assert.assertEquals(signUpPage.getAgeErrorMessage(), expectedAgeErrorMessage
-                , "Invalid age message should be displayed");
     }
 }
