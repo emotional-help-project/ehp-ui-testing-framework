@@ -130,4 +130,10 @@ public class SignUpPageSteps {
                 .confirmPassword(data.get("password"))
                 .enterAge(data.get("age"));
     }
+
+    @Then("SignUp page is displayed")
+    public void isSignUpPageDisplayed() {
+        Assert.assertEquals(signUpPage.getPageName(), "Sign up"
+                , "User is not on Sign Up page");
+    }
 }

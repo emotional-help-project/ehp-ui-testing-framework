@@ -1,20 +1,63 @@
 package com.epam.rd.steps;
 
 import com.epam.rd.pageobjects.HomePage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
+
+import java.util.Map;
 
 public class HomePageSteps {
 
     private final HomePage homePage = new HomePage();
 
-    @Given("User is on the HomePage")
+    @Given("Logged out user is on the HomePage")
     public void openHomePage() {
         homePage.open();
     }
 
-    @When("Clicks on the SignUp link in the header")
+    @When("User clicks the SignUp link in the header")
     public void clickSignUp() {
         homePage.clickSignUp();
+    }
+
+    @When("User clicks the Log In link in the header")
+    public void clickLogIn() {
+        homePage.clickLogIn();
+    }
+
+    @When("User click the appointment button")
+    public void clickAppointmentButton() {
+        homePage.clickMakeAnAppointmentButton();
+    }
+
+    @Then("{string} form is displayed")
+    public void isAppointmentFormDisplayed(String expectedAppointmentFormName) {
+        Assert.assertTrue(homePage.isAppointmentFormDisplayed(), "Appointment Form is not displayed");
+        Assert.assertEquals(homePage.getAppointmentHeaderText(), expectedAppointmentFormName
+                , "Wrong appointment form name");
+    }
+
+    @Then("Contact info is displayed")
+    public void isContactInfoDisplayed(DataTable dataTable) {
+        Map<String, String> contacts = dataTable.asMap();
+        Assert.assertTrue(homePage.isContactInformationDisplayed(), "Contact info is not displayed");
+        Assert.assertEquals(homePage.getPhoneNumber(), contacts.get("phoneNumber"), "Wrong phone number");
+        Assert.assertEquals(homePage.getCity(), contacts.get("city"), "Wrong city");
+        Assert.assertEquals(homePage.getEmailAddress(), contacts.get("emailAddress"), "Wrong email address");
+    }
+
+    @Then("A list of offered services is displayed")
+    public void areServicesDisplayed() {
+        Assert.assertTrue(homePage.areServicesDisplayed(), "Services are not displayed on homepage");
+        Assert.assertTrue(homePage.getNumberOfServicesOffered() >= 1, "There are no offered services");
+    }
+
+    @Then("A list of offered trainings is displayed")
+    public void areTrainingsDisplayed() {
+        Assert.assertTrue(homePage.areTrainignsDisplayed(), "Trainings are not displayed on homepage");
+        Assert.assertTrue(homePage.getNumberOfTrainingsOffered() >= 1, "There are no offered trainings");
     }
 }
