@@ -10,7 +10,7 @@ import java.util.Optional;
 public class DriverManager {
 
     private static final ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
-    private static final Duration IMPLICITLY_WAIT_TIMEOUT = Duration.ofSeconds(40);
+    private static final Duration IMPLICITLY_WAIT_TIMEOUT = Duration.ofSeconds(15);
     private static final Duration PAGE_LOAD_TIMEOUT = Duration.ofSeconds(40);
 
     private DriverManager() {
