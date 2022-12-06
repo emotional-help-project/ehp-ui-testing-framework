@@ -10,7 +10,8 @@ import java.util.Optional;
 public class DriverManager {
 
     private static final ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
-    private static final Duration WAIT_TIMEOUT = Duration.ofSeconds(10);
+    private static final Duration IMPLICITLY_WAIT_TIMEOUT = Duration.ofSeconds(40);
+    private static final Duration PAGE_LOAD_TIMEOUT = Duration.ofSeconds(40);
 
     private DriverManager() {
     }
@@ -19,8 +20,8 @@ public class DriverManager {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(WAIT_TIMEOUT);
-        driver.manage().timeouts().pageLoadTimeout(WAIT_TIMEOUT);
+        driver.manage().timeouts().implicitlyWait(IMPLICITLY_WAIT_TIMEOUT);
+        driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT);
         webDriverThreadLocal.set(driver);
     }
 
