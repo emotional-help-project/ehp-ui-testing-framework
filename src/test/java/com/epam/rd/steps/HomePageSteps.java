@@ -1,6 +1,7 @@
 package com.epam.rd.steps;
 
 import com.epam.rd.pageobjects.HomePage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
@@ -16,5 +17,10 @@ public class HomePageSteps {
     @When("Clicks on the SignUp link in the header")
     public void clickSignUp() {
         homePage.clickSignUp();
+    }
+
+    @And("Clicks on the Login link in the header")
+    public void clickLogin() {
+        homePage.clickLogin();
     }
 }
