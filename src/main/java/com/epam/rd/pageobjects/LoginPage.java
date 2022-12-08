@@ -20,7 +20,11 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@formcontrolname='password']")
     WebElement passwordField;
 
-    By loginErrorLabel = By.xpath("//div[@class='cointainer__error']");
+    @FindBy(xpath = "//div[@class='validation']/small")
+    WebElement emailErrorField;
+    WebElement psdErrorField;
+
+    By loginErrorLabel = By.xpath("//div[@class='container error']");
 
     public void enterEmail(String email) {
         emailField.sendKeys(email);
@@ -34,13 +38,29 @@ public class LoginPage extends BasePage {
         signInButton.click();
     }
 
-    public String getHomePageURL(){
-        return ConfigUtil.getHomePageURL();
-    }
-
     public String getLoginErrorMessage() {
         return new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.presenceOfElementLocated(loginErrorLabel))
+                .getText();
+    }
+
+    public String getEmailErrorText(){
+        return new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(emailErrorField))
+                .getText();
+    }
+
+    public void clickOnPasswordField() {
+        passwordField.click();
+    }
+
+    public void clickOnEmailField() {
+        emailErrorField.click();
+    }
+
+    public String getPsdErrorText() {
+        return new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(psdErrorField))
                 .getText();
     }
 }

@@ -1,8 +1,14 @@
 package com.epam.rd.pageobjects;
 
 import com.epam.rd.util.ConfigUtil;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage extends BasePage {
 
@@ -10,8 +16,13 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[text()='Sign Up']")
     WebElement signUpButton;
 
-    @FindBy(xpath = "//div[text()='Sing In']")
+    @FindBy(xpath = "//div[text()='Sign In']")
     WebElement loginButton;
+
+    By welcomeText = By.xpath("//div[@routerlinkactive='active__auth']/div");
+
+    @FindBy(xpath = "//div[@routerlinkactive='active__auth']/div")
+    WebElement wel;
 
     public HomePage open() {
         driver.get(URL);
@@ -26,5 +37,11 @@ public class HomePage extends BasePage {
     public LoginPage clickLogin() {
         loginButton.click();
         return new LoginPage();
+    }
+
+    public String getWelcomeText() {
+        return new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(welcomeText))
+                .getText();
     }
 }
