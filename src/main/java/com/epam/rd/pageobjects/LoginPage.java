@@ -20,8 +20,10 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@formcontrolname='password']")
     WebElement passwordField;
 
-    @FindBy(xpath = "//div[@class='validation']/small")
+    @FindBy(xpath = "(//div[@class='validation']/small)[1]")
     WebElement emailErrorField;
+
+    @FindBy(xpath = "(//div[@class='validation']/small)[2]")
     WebElement psdErrorField;
 
     By loginErrorLabel = By.xpath("//div[@class='container error']");
@@ -55,7 +57,7 @@ public class LoginPage extends BasePage {
     }
 
     public void clickOnEmailField() {
-        emailErrorField.click();
+        emailField.click();
     }
 
     public String getPsdErrorText() {

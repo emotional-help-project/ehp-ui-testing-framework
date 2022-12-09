@@ -29,7 +29,6 @@ public class HomePageSteps {
 
     @Then("Validate user successfully logged-in")
     public void validateUserSuccessfullyLoggedIn() {
-        System.out.println(homePage.getWelcomeText());
-        Assert.assertTrue((homePage.getWelcomeText()).contains("Welcome"));
+        Assert.assertEquals(homePage.getWelcomeText(), "Profile");
     }
 }

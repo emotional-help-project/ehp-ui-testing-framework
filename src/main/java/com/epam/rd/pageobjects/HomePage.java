@@ -19,7 +19,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[text()='Sign In']")
     WebElement loginButton;
 
-    By welcomeText = By.xpath("//div[@routerlinkactive='active__auth']/div");
+    By welcomeText = By.xpath("//li[text()='Profile']");
 
     @FindBy(xpath = "//div[@routerlinkactive='active__auth']/div")
     WebElement wel;
