@@ -1,7 +1,6 @@
 package com.epam.rd.steps;
 
 import com.epam.rd.pageobjects.LoginPage;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,10 +17,10 @@ public class LoginPageSteps {
 
     @Then("Validate login failure message appears")
     public void validateLoginFailureMessageAppears() {
-        Assert.assertTrue(loginPage.getLoginErrorMessage().contains("Bad credentials"));
+        Assert.assertTrue(loginPage.getLoginErrorMessage().contains("Bad credentials"), "User is not able to login when email or psd is incorrect");
     }
 
-    @And("User enters a {string} password")
+    @Given("User enters a {string} password")
     public void userEntersAPassword(String password) {
         loginPage.enterPassword(password);
     }
@@ -38,7 +37,7 @@ public class LoginPageSteps {
 
     @Then("Validate email error message appears")
     public void validateEmailErrorMessageAppears() {
-        Assert.assertEquals(loginPage.getEmailErrorText(), "* Email address must be valid");
+        Assert.assertEquals(loginPage.getEmailErrorText(), "* Email address must be valid", "Email address is not valid");
     }
 
     @When("User clicks on email field")
@@ -48,6 +47,6 @@ public class LoginPageSteps {
 
     @Then("Validate password error message appears")
     public void validatePasswordErrorMessageAppears() {
-        Assert.assertTrue((loginPage.getPsdErrorText()).contains("Password must contain"));
+        Assert.assertTrue((loginPage.getPsdErrorText()).contains("Password must contain"), "Password is not valid");
     }
 }

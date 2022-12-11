@@ -6,22 +6,24 @@ Feature: SignIn feature for Emotional Help Project
 
   Scenario Outline: Login with valid credentials
     Given User enters an "<email>" email
-    And User enters a "<password>" password
+    Given User enters a "<password>" password
     When User clicks on the SignIn button
     Then Validate user successfully logged-in
     Examples:
-    |email                 |  password     |
-    |test10@yahoo.com      |  Test1234*    |
+    |email                     |  password     |
+    |test10@yahoo.com          |  Test1234*    |
+    |anidarbinyan14@yahoo.com  |  Test1111!    |
 
 
   Scenario Outline: Login with invalid credentials
     Given User enters an "<email>" email
-    And User enters a "<password>" password
+    Given User enters a "<password>" password
     When User clicks on the SignIn button
     Then Validate login failure message appears
     Examples:
       |email                 |  password     |
       |test@yahoo.com        |  Tet1234*     |
+      |test10@yahoo.com      |  Tet34*       |
 
 
   Scenario Outline: Login with invalid email
@@ -31,6 +33,7 @@ Feature: SignIn feature for Emotional Help Project
     Examples:
       |email          |
       |test@com       |
+      |t@yahoo.com    |
 
 
   Scenario Outline: Login with invalid password
@@ -40,5 +43,4 @@ Feature: SignIn feature for Emotional Help Project
     Examples:
       |password      |
       |test          |
-
-
+      |pass2         |
