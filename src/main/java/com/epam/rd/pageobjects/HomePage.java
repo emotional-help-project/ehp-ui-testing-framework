@@ -21,9 +21,6 @@ public class HomePage extends BasePage {
 
     By welcomeText = By.xpath("//li[text()='Profile']");
 
-    @FindBy(xpath = "//div[@routerlinkactive='active__auth']/div")
-    WebElement wel;
-
     public HomePage open() {
         driver.get(URL);
         return this;
