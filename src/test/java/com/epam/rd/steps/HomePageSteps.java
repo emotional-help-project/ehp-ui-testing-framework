@@ -28,18 +28,6 @@ public class HomePageSteps {
         homePage.clickLogIn();
     }
 
-    @When("User click the appointment button")
-    public void clickAppointmentButton() {
-        homePage.clickMakeAnAppointmentButton();
-    }
-
-    @Then("{string} form is displayed")
-    public void isAppointmentFormDisplayed(String expectedAppointmentFormName) {
-        Assert.assertTrue(homePage.isAppointmentFormDisplayed(), "Appointment Form is not displayed");
-        Assert.assertEquals(homePage.getAppointmentHeaderText(), expectedAppointmentFormName
-                , "Wrong appointment form name");
-    }
-
     @Then("Contact info is displayed")
     public void isContactInfoDisplayed(DataTable dataTable) {
         Map<String, String> contacts = dataTable.asMap();

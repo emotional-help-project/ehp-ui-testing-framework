@@ -11,10 +11,6 @@ Feature: HomePage for logged out user
     When User clicks the Log In link in the header
     Then Login page is displayed
 
-  Scenario: Anonymous user can open Make an appointment form
-    When User click the appointment button
-    Then "Make an appointment" form is displayed
-
   Scenario: Contact info is displayed on the HomePage
     Then Contact info is displayed
       | phoneNumber  | +38 (096) 487 18 93 |

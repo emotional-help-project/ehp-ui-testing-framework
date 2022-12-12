@@ -12,14 +12,8 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//div[@class='registr']")
     WebElement signUpButton;
 
-    @FindBy(xpath = "//div[text()='Log In']")
+    @FindBy(xpath = "//div[text()='Sign In']")
     WebElement logInButton;
-
-    @FindBy(xpath = "//app-appointment-dialog//h2")
-    WebElement appointmentFormHeader;
-
-    @FindBy(xpath = "//button[contains(text(), 'appointment')]")
-    WebElement makeAnAppointmentButton;
 
     @FindBy(xpath = "//div[@class='number item']/span")
     WebElement phoneNumber;
@@ -34,9 +28,6 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//li[@class='card_item']")
     List<WebElement> trainings;
 
-    @FindBy(xpath = "//form")
-    WebElement appointmentForm;
-
     public HomePage open() {
         driver.get(URL);
         return this;
@@ -50,15 +41,6 @@ public class HomePage extends BasePage{
     public LoginPage clickLogIn() {
         logInButton.click();
         return new LoginPage();
-    }
-
-    public String getAppointmentHeaderText() {
-        return appointmentFormHeader.getText();
-    }
-
-    public HomePage clickMakeAnAppointmentButton() {
-        makeAnAppointmentButton.click();
-        return this;
     }
 
     public String getPhoneNumber() {
@@ -79,10 +61,6 @@ public class HomePage extends BasePage{
 
     public int getNumberOfTrainingsOffered() {
         return trainings.size();
-    }
-
-    public boolean isAppointmentFormDisplayed() {
-        return appointmentForm.isDisplayed();
     }
 
     public boolean isContactInformationDisplayed() {
