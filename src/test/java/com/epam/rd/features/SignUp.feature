@@ -1,8 +1,9 @@
 Feature: SignUp feature for Emotional Help Project
 
   Background: Open SignUp Page
-    Given User is on the HomePage
-    And Clicks on the SignUp link in the header
+    Given Logged out user is on the HomePage
+    When User clicks the SignUp link in the header
+    Then SignUp page is displayed
 
   Scenario: SignUp with valid data
     Given User enters valid data
